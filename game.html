@@ -27,11 +27,11 @@
             
             computerPlay();
 
-            let computerSelection = randomChoice
-            let playerSelection = theWord
+            let computerSelection = randomChoice;
+            let playerSelection = theWord;
 
 
-            function theGame (computerSelection, playerSelection) {
+            function theGame () {
 
                 if (playerSelection === "rock") {
                     if (computerSelection === "rock"){
@@ -41,19 +41,44 @@
                             return "You Lose !"
                         } else {
                             if (computerSelection === "scissor"){
-                                return "You Win !"
+                                return "You Win !" 
                             }
                         }
                     }
                 }
-
+                if (playerSelection === "paper") {
+                    if (computerSelection === "rock"){
+                        return "You Win! ! "
+                    } else {
+                        if (computerSelection === "paper"){
+                            return "It's a Draw !"
+                        } else {
+                            if (computerSelection === "scissor"){
+                                return "You Lose !" 
+                            }
+                        }
+                    }
+                }
+                if (playerSelection === "scissor") {
+                    if (computerSelection === "rock"){
+                        return "You Lose ! "
+                    } else {
+                        if (computerSelection === "paper"){
+                            return "You Win !"
+                        } else {
+                            if (computerSelection === "scissor"){
+                                return "It's a Draw !" 
+                            }
+                        }
+                    }
+                }
            
             
                 
             }
             
         
-            document.write(theGame(computerSelection,playerSelection))
+            document.write(theGame())
           
           
 
