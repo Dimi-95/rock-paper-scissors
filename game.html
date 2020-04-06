@@ -11,45 +11,50 @@
     <body>
 
         <script>
+            // player and computer score
+            let playerScore = 0
+            let computerScore = 0
             let randomChoice;
-            let choice = window.prompt("What do you choose ");
-            let theWord = (choice.toLocaleLowerCase());
+            let theWord;
+            //----
+            function userPlay() {
+            
+        
+                let choice = window.prompt("What do you choose ");
+                theWord = (choice.toLocaleLowerCase());
 
             //This checks if what typed into the prompt was correct  
-            if (choice === "rock" || choice === "paper" || choice === "scissor" ) {
-                alert("Good job ! "); 
-            } else {
-                alert("please try again, you typed something wrong :(")
+                if (theWord === "rock" || theWord === "paper" || theWord === "scissor" ) {
+                    alert("Good job ! "); 
+                } else {
+                    alert("please try again, you typed something wrong :(")
+                }
+                computerSelection = theWord;
             }
             //----------------------------------------------------------------
             
-            //Picks one of the strings in the array and saves it into the "randomChoice" variable
+            //Picks one of the strings in the array and saves it into the "randomChoice" variable, the play of the computer
             function computerPlay() {
                let things = [ "rock", "paper", "scissor"];
                randomChoice = things[Math.floor(Math.random()*things.length)];
                //alert (randomChoice);
                
             };
-
-        
-            //Runs the above function
-            computerPlay();
-
-            //"randomChoice" and "theWord" are being saved into "computerSelection" and "playerSelection" for clarity purposes
-            let computerSelection = randomChoice;
-            let playerSelection = theWord;
-
             //This function runs the rock-paper-scissor game, telling you at the end if: you won, lose or had a draw with the random generated result of the "computerSelection"
-            function theGame () {
+            function theGame (computerSelection, playerSelection) {
 
                 if (playerSelection === "rock") {
                     if (computerSelection === "rock"){
+                        playerScore = playerScore + 1
+                        computerScore = computerScore + 1
                         return "It's a Draw ! "
                     } else {
                         if (computerSelection === "paper"){
+                            computerScore = computerScore + 1
                             return "You Lose !"
                         } else {
                             if (computerSelection === "scissor"){
+                                playerScore = playerScore + 1
                                 return "You Win !" 
                             }
                         }
@@ -57,12 +62,16 @@
                 }
                 if (playerSelection === "paper") {
                     if (computerSelection === "rock"){
+                        playerScore = playerScore + 1
                         return "You Win! ! "
                     } else {
                         if (computerSelection === "paper"){
+                            playerScore = playerScore + 1
+                            computerScore = computerScore + 1
                             return "It's a Draw !"
                         } else {
                             if (computerSelection === "scissor"){
+                                computerScore = computerScore + 1
                                 return "You Lose !" 
                             }
                         }
@@ -70,12 +79,16 @@
                 }
                 if (playerSelection === "scissor") {
                     if (computerSelection === "rock"){
+                        computerScore = computerScore + 1
                         return "You Lose ! " 
                     } else {
                         if (computerSelection === "paper"){
+                            playerScore = playerScore + 1
                             return "You Win !"
                         } else {
                             if (computerSelection === "scissor"){
+                                playerScore = playerScore + 1
+                                computerScore = computerScore + 1
                                 return "It's a Draw !" 
                             }
                         }
@@ -85,15 +98,33 @@
                 
             }
 
-            //let playerScore = 0
-            //let computerScore = 0
             
-            //function game(){
+            
+            function game(){
+                let counter;
+                for (counter=0; counter < 5; counter++){
+                    userPlay();
+                    computerPlay();
+                    theGame(theWord, randomChoice) //print the result of the game on to the HTML page
+                }
+                document.write("You scored:" + playerScore  + "point(s)"  + "The computer scored:"  + computerScore  + "point(s)")
+                if (playerScore > computerScore){
+                  document.write(" You Won !");  
+                } else if (playerScore < computerScore){
+                    document.write(" You LOSE !");
+                } else {
+                    document.write(" It's a Draw :(");
+                }
 
-            //}
+                //alert("this function has been repeated"); 
+            }
 
+            game();
+
+            
         
-            document.write(theGame()) //print the result of the game on to the HTML page
+            //document.write(theGame(computerSelection, playerSelection))  //print the result of the game on to the HTML page
+            //document.write("You scored:" + playerScore  + "point(s)"  + "The computer scored:"  + computerScore  + "point(s)")
 
           
           
