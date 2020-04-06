@@ -12,25 +12,34 @@
 
         <script>
             let randomChoice;
-            let choice = window.prompt("What do you choose ")
+            let choice = window.prompt("What do you choose ");
             let theWord = (choice.toLocaleLowerCase());
-            
-            
-            
 
+            //This checks if what typed into the prompt was correct  
+            if (choice === "rock" || choice === "paper" || choice === "scissor" ) {
+                alert("Good job ! "); 
+            } else {
+                alert("please try again, you typed something wrong :(")
+            }
+            //----------------------------------------------------------------
+            
+            //Picks one of the strings in the array and saves it into the "randomChoice" variable
             function computerPlay() {
                let things = [ "rock", "paper", "scissor"];
                randomChoice = things[Math.floor(Math.random()*things.length)];
                //alert (randomChoice);
                
             };
-            
+
+        
+            //Runs the above function
             computerPlay();
 
+            //"randomChoice" and "theWord" are being saved into "computerSelection" and "playerSelection" for clarity purposes
             let computerSelection = randomChoice;
             let playerSelection = theWord;
 
-
+            //This function runs the rock-paper-scissor game, telling you at the end if: you won, lose or had a draw with the random generated result of the "computerSelection"
             function theGame () {
 
                 if (playerSelection === "rock") {
@@ -61,7 +70,7 @@
                 }
                 if (playerSelection === "scissor") {
                     if (computerSelection === "rock"){
-                        return "You Lose ! "
+                        return "You Lose ! " 
                     } else {
                         if (computerSelection === "paper"){
                             return "You Win !"
@@ -72,13 +81,20 @@
                         }
                     }
                 }
-           
-            
+               
                 
             }
+
+            //let playerScore = 0
+            //let computerScore = 0
             
+            //function game(){
+
+            //}
+
         
-            document.write(theGame())
+            document.write(theGame()) //print the result of the game on to the HTML page
+
           
           
 
